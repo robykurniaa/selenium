@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,6 +14,7 @@ public class TestPositive {
 	public static void main(String[] args) {
 		System.setProperty("webdriver.chromedriver", "C:\\chromedriver.exe");
 		WebDriver driver  = new ChromeDriver();
+		Actions act = new Actions(driver);
 		
 		driver.get("https://demoqa.com/");
 		driver.manage().window().maximize();
@@ -75,9 +77,9 @@ public class TestPositive {
 		search.sendKeys("Roby");
 		
 		//click edit
-		WebElement edit = driver.findElement(By.cssSelector("#edit-record-4 > svg"));
+		WebElement clickEdit = driver.findElement(By.cssSelector("#edit-record-4 > svg"));
 		tunggu();
-		edit.click();
+		clickEdit.click();
 		
 //		WebElement exit = driver.findElement(By.cssSelector("body > div.fade.modal.show > div > div > div.modal-header > button"));
 //		tunggu();
@@ -86,7 +88,8 @@ public class TestPositive {
 //		edit last name
 		WebElement editing = driver.findElement(By.id("lastName"));
 		tunggu();
-		editing.sendKeys(" Ramadhan");
+		act.moveToElement(editing).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
+		editing.sendKeys("Ramadhan");
 		
 //		submit edit
 		WebElement submitEdit =  driver.findElement(By.id("submit"));
@@ -94,9 +97,11 @@ public class TestPositive {
 		submitEdit.click();
 		
 		//delete last name
-//		WebElement delete = driver.findElement(By.cssSelector("#delete-record-4 > svg"));
-//		tunggu();
-//		delete.click();
+		WebElement delete = driver.findElement(By.cssSelector("#delete-record-4 > svg"));
+		tunggu();
+		delete.click();
+		
+		driver.navigate().refresh();
 		
 	}
 	
