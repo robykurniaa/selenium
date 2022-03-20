@@ -105,9 +105,6 @@ public class TestPositive {
 		
 	}
 	
-	public static void elements() {
-		
-	}
 	
 	public static void tunggu() {
 		try {
